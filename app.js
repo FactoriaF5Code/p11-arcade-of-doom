@@ -1,9 +1,17 @@
 //tenemos una lista de nombres
-let names = ["Javi", "Matheus", "Andrés", "Daniel", "Marina", "Jorge", "Cora"];
+let names = ["Javi","Andrés", "Daniel",  "Cora", "Seif"];
+
+// pintar lista de nombres
+let nameSection = document.querySelector(".nameSection");
+
+for(let name of names) {
+    // appendChild
+    nameSection.insertAdjacentHTML("beforeend", `<p>${name}</p>`)
+}
+
 
 // cuando hagamos click en #pulsador
 document.getElementById("pulsador").onclick = function () {
-
     let name;
 
     //miramos si la lista está vacía
@@ -13,9 +21,9 @@ document.getElementById("pulsador").onclick = function () {
         // sacamos un número al azar
         let number = Math.floor(Math.random() * names.length);
         console.log("Ha salido el numero " + number);
-        
+
         // sacamos un nombre y lo quitamos de la lista
-        name = names.splice(number,1)[0];
+        name = names.splice(number, 1)[0];
         console.log("El número " + number + "corresponde a " + name);
     }
 
