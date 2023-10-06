@@ -7,10 +7,10 @@ let discardedNamesSection = document.querySelector(".discardedNames");
 let names = ["Javi", "Andrés", "Daniel", "Cora", "Seif"];
 let discardedNames = [];
 
-function pintarNombres(elemento, list) {
+function pintarNombres(list) {
     for (let name of list) {
         // appendChild
-        elemento.insertAdjacentHTML("beforeend", `<p>${name}</p>`)
+        nameSection.insertAdjacentHTML("beforeend", `<p>${name}</p>`)
     }
 }
 
