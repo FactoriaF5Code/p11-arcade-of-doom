@@ -1,32 +1,66 @@
-//tenemos una lista de nombres
-let names = ["Javi","Andrés", "Daniel",  "Cora", "Seif"];
-
-// pintar lista de nombres
+let pulsador = document.getElementById("pulsador");
 let nameSection = document.querySelector(".nameSection");
+let pantalla = document.getElementById("pantalla");
+let discardedNamesSection = document.querySelector(".discardedNames");
 
-for(let name of names) {
-    // appendChild
-    nameSection.insertAdjacentHTML("beforeend", `<p>${name}</p>`)
+//tenemos una lista de nombres
+let names = ["Javi", "Andrés", "Daniel", "Cora", "Seif"];
+let discardedNames = [];
+
+function pintarNombres(elemento, list) {
+    for (let name of list) {
+        // appendChild
+        elemento.insertAdjacentHTML("beforeend", `<p>${name}</p>`)
+    }
+}
+
+function pintarNombresDescartados(list) {
+    for (let name of list) {
+        // appendChild
+        discardedNamesSection.insertAdjacentHTML("beforeend", `<p>${name}</p>`)
+    }
+}
+
+function borrarListaDeNombres() {
+    // buscar una manera más eficiente
+    nameSection.innerHTML = "";
+}
+
+function borrarNombresDescartados() {
+    discardedNamesSection.innerHTML = "";
+}
+
+function actualizarPantalla() {
+    borrarListaDeNombres()
+    pintarNombres(names);
+    borrarNombresDescartados()
+    pintarNombresDescartados(discardedNames);
 }
 
 
+
+pintarNombres(names);
+
+
 // cuando hagamos click en #pulsador
-document.getElementById("pulsador").onclick = function () {
+pulsador.onclick = function () {
     let name;
 
     //miramos si la lista está vacía
     if (names.length === 0) {
         name = "Game Over"
     } else {
-        // sacamos un número al azar
+        
         let number = Math.floor(Math.random() * names.length);
-        console.log("Ha salido el numero " + number);
 
-        // sacamos un nombre y lo quitamos de la lista
         name = names.splice(number, 1)[0];
-        console.log("El número " + number + "corresponde a " + name);
+
+        discardedNames = [...discardedNames, name];
+
+        actualizarPantalla();
+
     }
 
     // pintamos la variable name donde antes ponía "Cargando"
-    document.getElementById("pantalla").innerHTML = name;
+    pantalla.innerHTML = name;
 }
